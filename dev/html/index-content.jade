@@ -1,39 +1,29 @@
 block content
 
-
-  //- <!-- Container #1 (see wireframe) -
+  //- <!-- Container #1 (see wireframe) -->
 md-toolbar(layout="row")
-   h1 Steven Bell
-  h2 Full Stack Web Developer!
+  h3 Steven Bell - Full Stack Web Developer
+  md-button(class="menu" aria-label="Show User List" hide-gt-sm ng-click="ul.toggleList()")
+    md-icon(md-svg-icon="menu")
 
-//- <!-- Container #2 -->
+  //- <!-- Container #2 -->
 div(flex layout="row")
-
-    //- <!-- Container #3 -->
-    md-sidenav(md-is-locked-open="true" class="md-whiteframe-z2")
+    md-sidenav(md-is-locked-open="lockLeft && $mdMedia('gt-md')" hide-xs hide-sm md-class="md-whiteframe-z2 md-sidenav-left" ng-click="ul.toggleList()" md-component-id="left" style="position: relative")
       md-list
-        //- <!-- List item #1 -->
-        md-list-item
-            md-button
-              md-icon(md-svg-src="./assets/svg/avatar-1.svg" class="avatar")
-                | Lia Luogo
+        md-list-item(ng-repeat="it in ul.news")
+          md-button(ng-click="ul.selectNews(it)" ng-class="{'selected' : it === ul.selected }")
+            md-icon(md-svg-icon="{{it.avatar}}" class="avatar")
+            {{it.name}}
 
-        //- <!-- List item #2 -->
-        md-list-item
-            md-button
-             md-icon(md-svg-src="./assets/svg/avatar-4.svg" class="avatar")
-              | Lawrence Ray
-
-
-
-      md-content(flex id="content")
-      //- <!-- User details sample -->
-
-      md-icon(md-svg-src="./assets/svg/avatar-1.svg" class="avatar")
-
-
-    //- <!-- Container #4 -->
+      //- !-- Wireframe Container #4 -->
     md-content(flex id="content")
+      md-icon(md-svg-icon="{{ul.selected.avatar}}" class="avatar")
+      md-button(class="share" aria-label="Share with {{ ul.selected.name }}" md-no-ink ng-click="ul.makeContact(ul.selected)")
+        md-icon(md-svg-icon="share")
+      h2 {{ul.selected.name}}
+      p {{ul.selected.content}}
+
+
 
 
 

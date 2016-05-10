@@ -1,5 +1,19 @@
+console.log("materialApp.js linked.");
+
 // You must include the dependency on 'ngMaterial'
 
-angular.module('materialApp', ['ngMaterial']);
-
-console.log("materialApp.js linked.");
+angular
+    .module('materialApp', ['ngMaterial', 'news'])
+    .config(function($mdThemingProvider, $mdIconProvider){
+        $mdIconProvider
+            .defaultIconSet("./assets/svg/avatars.svg", 128)
+            .icon("menu"       , "./assets/svg/menu.svg"        , 24)
+            .icon("share"      , "./assets/svg/share.svg"       , 24)
+            .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
+            .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
+            .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
+            .icon("phone"      , "./assets/svg/phone.svg"       , 512);
+        $mdThemingProvider.theme('default')
+            .primaryPalette('green')
+            .accentPalette('brown');
+    });

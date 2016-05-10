@@ -9,34 +9,36 @@
   <title>'Angular Material Design Template by Steven Bell'</title>
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="./stylesheets/css/style.css">
-  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+  <link rel="stylesheet" href="./stylesheets/css/angular-material.min.css">
 </head>
-<body ng-app="materialApp" layout="column" ng-cloak class="image">
+<body ng-app="materialApp" layout="column" ng-controller="NewsListController as ul" ng-cloak class="image">
   <!--[if lt IE 8]>
   <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   <md-toolbar layout="row">
-    <h1>Steven Bell</h1>
+    <h3>Steven Bell - Full Stack Web Developer</h3>
+    <md-button aria-label="Show User List" hide-gt-sm ng-click="ul.toggleList()" class="menu">
+      <md-icon md-svg-icon="menu"></md-icon>
+    </md-button>
   </md-toolbar>
-  <h2>Full Stack Web Developer!</h2>
   <div flex layout="row">
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+    <md-sidenav md-is-locked-open="lockLeft &amp;&amp; $mdMedia('gt-md')" hide-xs hide-sm md-class="md-whiteframe-z2 md-sidenav-left" ng-click="ul.toggleList()" md-component-id="left" style="position: relative">
       <md-list>
-        <md-list-item>
-          <md-button>
-            <md-icon md-svg-src="./assets/svg/avatar-1.svg" class="avatar">Lia Luogo</md-icon>
-          </md-button>
-        </md-list-item>
-        <md-list-item>
-          <md-button>
-            <md-icon md-svg-src="./assets/svg/avatar-4.svg" class="avatar">Lawrence Ray</md-icon>
+        <md-list-item ng-repeat="it in ul.news">
+          <md-button ng-click="ul.selectNews(it)" ng-class="{'selected' : it === ul.selected }">
+            <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>{{it.name}}
           </md-button>
         </md-list-item>
       </md-list>
-      <md-content flex id="content"></md-content>
-      <md-icon md-svg-src="./assets/svg/avatar-1.svg" class="avatar"></md-icon>
     </md-sidenav>
-    <md-content flex id="content"></md-content>
+    <md-content flex id="content">
+      <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+      <md-button aria-label="Share with {{ ul.selected.name }}" md-no-ink ng-click="ul.makeContact(ul.selected)" class="share">
+        <md-icon md-svg-icon="share"></md-icon>
+      </md-button>
+      <h2>{{ul.selected.name}}</h2>
+      <p>{{ul.selected.content}}</p>
+    </md-content>
   </div>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
@@ -45,7 +47,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
   <script src="js/users/Users.js"></script>
   <script src="js/users/UsersListController.js"></script>
-  <script src="js/users/UsersDataservice.js"></script>
+  <script src="js/users/UsersDataService.js"></script>
+  <script src="js/news/News.js"></script>
+  <script src="js/news/NewsListController.js"></script>
+  <script src="js/news/NewsDataService.js"></script>
   <script src="js/main.js"></script>
   <script src="js/materialApp.js"></script>
 </body>

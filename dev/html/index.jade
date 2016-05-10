@@ -10,10 +10,10 @@ head
     title 'Angular Material Design Template by Steven Bell'
     link(rel="apple-touch-icon" href="apple-touch-icon.png")
     link(rel="stylesheet" href="./stylesheets/css/style.css")
-    //- link(rel="stylesheet" href="./stylesheets/css/angular-material.min.css")
-    link(rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css")
+    link(rel="stylesheet" href="./stylesheets/css/angular-material.min.css")
+    //- link(rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css")
 
-body(ng-app="materialApp" layout="column" ng-cloak).image
+body(ng-app="materialApp" layout="column" ng-controller="NewsListController as ul" ng-cloak).image
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -30,7 +30,10 @@ body(ng-app="materialApp" layout="column" ng-cloak).image
 
     script(src="js/users/Users.js")
     script(src="js/users/UsersListController.js")
-    script(src="js/users/UsersDataservice.js")
+    script(src="js/users/UsersDataService.js")
+    script(src="js/news/News.js")
+    script(src="js/news/NewsListController.js")
+    script(src="js/news/NewsDataService.js")
     script(src="js/main.js")
     script(src="js/materialApp.js")
 
