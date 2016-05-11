@@ -14,7 +14,7 @@
    * @param avatarsService
    * @constructor
    */
-  function NewsListController( NewsDataService, $mdSidenav, $mdBottomSheet, $timeout, $log ) {
+  function NewsListController( NewsDataService, PresidentsController, $mdSidenav, $mdBottomSheet, $timeout, $log ) {
     var self = this;
 
     self.selected     = null;
@@ -23,14 +23,22 @@
     self.toggleList   = toggleNewsList;
     self.makeContact  = makeContact;
 
-    // Load all registered news
+    // function loadNews (){
+    //    self.news = NewsDataService.loadAllNews();
+    // }
 
+    // loadNews();
+
+    // Load all registered news
     NewsDataService
           .loadAllNews()
           .then( function( news ) {
-            self.news    = [].concat(news);
+            console.log("###### NEWS NEWS news" + news);
+            self.news = [].concat(news);
             self.selected = news[0];
+            // console.log("self.selected from NewsListController call to NewsDataService" + JSON.stringify(self.selected));
           });
+
 
     // *********************************
     // Internal methods
