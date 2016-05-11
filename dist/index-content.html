@@ -8,9 +8,9 @@
 <div flex layout="row">
   <md-sidenav md-is-locked-open="lockLeft &amp;&amp; $mdMedia('gt-md')" hide-xs hide-sm md-class="md-whiteframe-z2 md-sidenav-left" ng-click="ul.toggleList()" md-component-id="left" style="position: relative">
     <md-list>
-      <md-list-item ng-repeat="it in ul.news">
+      <md-list-item ng-repeat="it in ul.news track by $index">
         <md-button ng-click="ul.selectNews(it)" ng-class="{'selected' : it === ul.selected }">
-          <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>{{it.name}}
+          <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>{{it.url}}
         </md-button>
       </md-list-item>
     </md-list>

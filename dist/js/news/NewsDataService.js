@@ -12,9 +12,9 @@
     self.all = [];
     self.news = [];
     self.respond = [];
-    var topStories = [],
-        returnedValues = [],
-        eachTopStory = {};
+    var topStories = [];
+    var returnedValues = [];
+    var eachTopStory = {};
 
     function extractValues(parsedJSONres) {
     topStories = [];
@@ -37,8 +37,8 @@
           eachTopStory.headline = stories.cardContents.headlinePlainText;
           eachTopStory.imageUrl = stories.cardContents.media.elementContents.cuts['full16x9'].uri;
           eachTopStory.byLine = stories.cardContents.auxiliaryText;
-          returnedValues += JSON.stringify(eachTopStory);
-      // console.log("EACHTOPSTORY:  " + JSON.stringify(eachTopStory));
+          returnedValues.push(eachTopStory);
+      //  console.log("EACHTOPSTORY:  " + JSON.stringify(eachTopStory));
       });
       return  returnedValues;
   }
@@ -53,8 +53,10 @@
           .then(function(response){
              var parsedJSONres = response.data;
             extractValues(parsedJSONres);
-            self.news = getEachTopStory(topStories);
+            getEachTopStory(topStories);
+            self.news = returnedValues;
             // console.log(response.data);
+            // console.log("(((((self.news))))" + self.news);
             return self.news;
           });
         }
@@ -79,6 +81,13 @@
   //     {
   //       name: 'Lia Lugo',
   //       avatar: 'svg-1',
+  //       content: 'I love cheese, especially airedale queso. Cheese and biscuits halloumi cauliflower cheese cottage cheese swiss boursin fondue caerphilly. Cow port-salut camembert de normandie macaroni cheese feta who moved my cheese babybel boursin. Red leicester roquefort boursin squirty cheese jarlsberg blue castello caerphilly chalk and cheese. Lancashire.'
+  //     },
+  //     {
+  //       name: 'George Duke',
+  //       avatar: 'svg-2',
+  //       content: 'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.'
+  //     },
   //     {
   //       name: 'Gener Delosreyes',
   //       avatar: 'svg-3',
@@ -110,13 +119,6 @@
   //   };
   // }
 
-  // content: 'I love cheese, especially airedale queso. Cheese and biscuits halloumi cauliflower cheese cottage cheese swiss boursin fondue caerphilly. Cow port-salut camembert de normandie macaroni cheese feta who moved my cheese babybel boursin. Red leicester roquefort boursin squirty cheese jarlsberg blue castello caerphilly chalk and cheese. Lancashire.'
-  //     },
-  //     {
-  //       name: 'George Duke',
-  //       avatar: 'svg-2',
-  //       content: 'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.'
-  //     },
 
 
 )();

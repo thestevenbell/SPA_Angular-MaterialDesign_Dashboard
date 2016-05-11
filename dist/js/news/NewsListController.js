@@ -23,22 +23,22 @@
     self.toggleList   = toggleNewsList;
     self.makeContact  = makeContact;
 
-    // function loadNews (){
-    //    self.news = NewsDataService.loadAllNews();
-    // }
-
-    // loadNews();
-
     // Load all registered news
     NewsDataService
           .loadAllNews()
           .then( function( news ) {
-            console.log("###### NEWS NEWS news" + news);
-            self.news = [].concat(news);
-            self.selected = news[0];
-            // console.log("self.selected from NewsListController call to NewsDataService" + JSON.stringify(self.selected));
+            console.log(">>>>>> NEWS" + news[0]);
+            // console.log("###### NEWS NEWS news[1]" + "  " + news[1]);
+            // console.log("###### NEWS NEWS stringify" + "  " + JSON.stringify(news));
+            self.news = news;
+            console.log("OBJECT.KEYS" + Object.keys(self.news));
+            console.log("self.news[0].url" + self.news[0].url);
+            // self.news.forEach(function (content) {
+            //   console.log("++++++" + content[0].byline);
+            // });
+            // self.selected = news[0];
+            // console.log("self.selected from NewsListController call to NewsDataService" + self.selected);
           });
-
 
     // *********************************
     // Internal methods
